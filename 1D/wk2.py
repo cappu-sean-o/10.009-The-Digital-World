@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from pythymiodw import *
 
 def print_temp(t_celcius):
