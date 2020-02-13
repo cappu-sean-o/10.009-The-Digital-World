@@ -1,3 +1,5 @@
+# Copied from https://github.com/MarkHershey/DW2020/blob/master/W3/mini1D/wk3_template.py with permission from MarkHershey
+
 import RPi.GPIO as GPIO
 from time import sleep
 
@@ -19,15 +21,21 @@ def blink(gpio_number, duration):
     '''This function takes in two input: gpio_number and duration. The
     gpio_number specifies the GPIO number which the LED (to be blinked) is
     connected to. The duration is the blink interval in seconds.'''
+    GPIO.output(gpio_number, GPIO.HIGH)
+    sleep(duration)
+    GPIO.output(gpio_number, GPIO.LOW)
+    sleep(duration)
+    return
 
-    # Write your code here
-    pass
 
 while True:
     # Check whether the switch is closed or opened. When the switch is closed,
     # turn off the LED at GPIO24 and blink the LED at GPIO23. When the switch
     # is opened, turn off the LED at GPIO23 and blink the LED at GPIO24. The
     # blink interval should be 1 second.
-
-    # Write your code here
-    pass
+    if GPIO.input(switch) == GPIO.HIGH:
+        GPIO.output(led[1], GPIO.LOW)
+        blink(led[0], 1)
+    else:
+        GPIO.output(led[0], GPIO.LOW)
+        blink(led[1], 1)
